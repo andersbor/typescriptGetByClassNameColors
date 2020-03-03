@@ -1,12 +1,13 @@
-interface Person {
-    firstName: string;
-    lastName: string;
-}
+let colorInput: HTMLInputElement = <HTMLInputElement>document.getElementById("colorInput");
+let changeColorButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("changeColorButton");
+let elements: HTMLCollectionOf<Element> = document.getElementsByClassName("color");
+changeColorButton.addEventListener("click", changeColor);
 
-function greeter(person: Person): string {
-    return "Hello, " + person.firstName + " " + person.lastName;
-}
-let user: Person = { firstName: "John", lastName: "Doe" };
+function changeColor(): void {
+    let newColor: string = colorInput.value;
+    for (let index = 0; index < elements.length; index++) {
+        const element: HTMLElement = <HTMLElement>elements[index];
+        element.style.backgroundColor = newColor;
 
-let element: HTMLDivElement = <HTMLDivElement> document.getElementById("content");
-element.innerHTML = greeter(user);
+    }
+}
